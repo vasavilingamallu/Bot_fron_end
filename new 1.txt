@@ -1,0 +1,10 @@
+<button type="button" class="about">About College</button>' +
+                  '<button type="button" class="about">Courses offered </button>' +
+                  '<button type="button" class="placements">Placements</button>' +
+                  '<button type="button" class="Fee">Fee structure</button>' +
+                  '<button type="button" class="sports">Sports & NCC</button>' +
+                  '<button type="button" class="projects">Internships&projects</button>' +
+                  '<button type="button" class="research">Reserch Work</button>' +
+                  '<button type="button" class="mfee">Miscelleneous</button>' +
+                  '<button type="button" class="EActivities">Extracurricuilar Activities</button>' +
+                  '<button type="button" class="notification">Notification</button>
