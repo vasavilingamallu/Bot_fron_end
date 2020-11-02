@@ -1,0 +1,556 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="bootstrap.css" />
+    <style>
+        body {
+            font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        .openChatBtn {
+            background-color: rgb(123, 28, 179);
+            color: white;
+            /*padding: 16px 20px;*/
+            border: none;
+            font-weight: 500;
+            font-size: 18px;
+            cursor: pointer;
+            opacity: 0.8;
+            position: fixed;
+            bottom: 23px;
+            right: 28px;
+            /* width: 280px; */
+        }
+
+        .openChat {
+            display: none;
+            border-radius: 5px;
+            position: fixed;
+            bottom: 0;
+            right: 15px;
+            border: 2p rgb(0, 0, 0);
+            z-index: 9;
+            background-color: white;
+            height: auto;
+            width: 300px;
+            border: 2px rgb(128, 128, 128);
+            border-style: inset;
+            background-image: url("background_img7.jpg");
+        }
+
+        .btn {
+            background-color: rgb(0, 179, 0);
+            margin: auto;
+            padding: 10px;
+            font-size: x-small;
+            font-style: normal;
+            border-radius: 10px;
+        }
+
+        .close {
+            background-color: red;
+            margin: auto;
+            padding: 5px;
+            font-size: x-small;
+            font-style: normal;
+            border-radius: 4px;
+        }
+
+        .btn:hover,
+        .openChatBtn:hover {
+            opacity: 1;
+        }
+
+        input[type=text] {
+            width: 100%;
+            padding: 12px 20px;
+            margin: 8px 0;
+            box-sizing: border-box;
+        }
+
+        input[type=lable] {
+            height: 40%;
+            width: 100%;
+            color: weight;
+            font-family: "Verdana";
+            font-size: 20px;
+            border: none;
+            background-color: rgb(179, 179, 255);
+            border-top-left-radius: 5px;
+            border-top-right-radius: 5px;
+            padding: 10px;
+            background-image: url(bot_lable_background.jpg);
+        }
+
+        .chat-reply {
+            background-color: rgb(191, 191, 191, 0.9);
+            font-size: small;
+            text-align: right;
+            float: right;
+            word-wrap: normal;
+        }
+
+        p {
+            display: inline-block;
+            padding: 10px;
+            margin: 2px;
+            border-radius: 5px;
+            word-wrap: normal;
+        }
+
+        .chat-send {
+            background-color: rgb(242, 242, 242);
+            text-align: left;
+            color: black;
+            font-size: small;
+            word-wrap: break-word;
+        }
+
+        .chat-body {
+            font-size: small;
+            height: 300px;
+            overflow-y: auto;
+            overflow-x: wrap;
+        }
+
+        button {
+            background-color: rgb(153, 153, 255);
+            margin: 3px;
+            padding: 5px;
+            font-size: x-small;
+            font-style: normal;
+            border-radius: 4px;
+        }
+
+        button :hover {
+            background-color: white;
+            opacity: 1;
+        }
+
+        body {
+            background-image: url("background2.jpg");
+            background-position: center;
+            background-size: cover
+        }
+
+        #header {
+            height: 30%;
+            width: 100%;
+            padding: 25px 10px;
+            background-color: rgb(235, 240, 250, 0.6);
+        }
+
+        div#header div {
+            display: inline-block;
+        }
+
+        #header_right {
+            float: right;
+            color: #08a3d9;
+            width: 20%;
+            border-color: red;
+        }
+
+        #header-middle {
+            width: 80%;
+            border-color: green;
+            text-align: center;
+        }
+
+        #header-left {
+            float: left;
+            width: 20%;
+            border-color: blue;
+        }
+
+        img {
+            height: 100px;
+            width: 100px;
+        }
+
+        #address {
+            text-align: center;
+            font-size: 20px;
+        }
+
+        #body_section {
+            height: 70%;
+            width: 120%;
+        }
+
+        #right_body {
+            display: inline-block;
+            height: 70%;
+            width: 40%;
+            margin: 10px;
+            padding: 10px;
+            border-radius: 5px;
+            background-color: rgb(235, 240, 250, 0.7);
+            font-size: 20px;
+            /* max-height: 500px; */
+            /* max-width: 500px; */
+            overflow-y: auto;
+        }
+
+        #left_body {
+            display: inline-block;
+            height: 40%;
+            width: 40%;
+            margin: 10px;
+            padding: 10px;
+            border-radius: 5px;
+            background-color: rgb(235, 240, 250, 0.7);
+            font-size: 20px;
+            /* max-height: 500px; */
+            /* max-width: 500px; */
+            overflow-y: auto;
+        }
+
+        #buttons {
+            height: 180px;
+            width: 200px;
+        }
+
+        h2 {
+            text-align: center;
+            color: indigo;
+
+        }
+        h4{
+          color: white;
+          font-size: 15px;  
+        }
+    </style>
+
+
+</head>
+
+<body>
+    <div id="header">
+        <div id="header_left">
+            <img id="logo" src="college_logo.png" alt="college_logo">
+        </div>
+
+        <div id="header-middle">
+            <h1>VISHNU INSTITUTE OF TECHNOLOGY,Bhimavaram</h1>
+            <p id="address">Vishnupur, Kovvada Rd, Kovvada, Andhra Pradesh 534202</p>
+        </div>
+        <div id="header-right">
+            <div class="right-side"><img id="founder" src="founder_chairman.jpg" alt="founder chairman"></div>
+        </div>
+    </div>
+    <br>
+    <div id="body_section">
+        <h2>VIT-College bot instructions for interaction with Bot</h2>
+        <div id="right_body">
+            <h3>Interaction with Buttons</h3>
+            <p> By entering Menu key word or any key word,it will give list of buttons related to the information which
+                is available. Just by clicking on them we can interact directly </p>
+            <img id="buttons" src="list_of_buttons.png" alt="list of buttons">
+        </div>
+        <div id="left_body">
+            <h3>Interaction using Keywords</h3>
+            <ul>
+                <li>About college</li>
+                <li>Courses offered</li>
+                <li>Placements</li>
+                <li>Fee structure</li>
+                <li>Sports and NCC</li>
+                <li>Internships and projects</li>
+                <li>Research Work</li>
+                <li>Miscelleneous</li>
+                <li>Extracurricular Activities</li>
+                <li>Notification</li>
+            </ul>
+        </div>
+    </div>
+    <input id="img" type="image" src="bot-icon-14.jpg" class="openChatBtn"></button>
+    <div class="openChat">
+        <input type="lable" value="Welcome to VIT Bot ">
+        <!-- <textarea name="msg" id="viwe_msg"></textarea> -->
+        <div class="chat-body">
+            <!-- <div class="chat-send">Welcome to our college<br>----------<br>1.About College<br>2.Currculam</div> -->
+            <p class="chat-send">Welcome to Vishnu Institute of Technology, Bhimavaram</p><br>
+            <p class="chat-send">May I Know your Good Name please.......</p><br>
+
+        </div>
+        <input type="text" id="msg" class="msg_box" placeholder="Type message..">
+        <button type="button" class="btn">Enter</button>
+        <button type="button" class="close">Close</button>
+    </div>
+    <footer>
+        <p><h4>project done by: L.V.S.Prasanna, P.Shyamala Madhuri, V.Sarada<h4><p>
+    </footer>
+    
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"
+        integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
+    <script>
+        name_of_the_user="";
+        contact_number = "08816251333";
+        address = "Vishnupur, Kovvada Rd, Kovvada, Andhra Pradesh 534202";
+        var reply = "";
+
+        /*
+        * creat the menu user defind object which contains the functionality belongs to the college bot
+        */
+        var Menu_data = {
+            about_college: "Vishnu Institute of Technology, was established in 2008 by Sri Vishnu Educational Society (SVES)," +
+                "a leading educational trust to promote quality education, under the aegis of eminent philanthropist Padma Bhushan Dr. B.V.Raju (Late)." +
+                "The institute is approved by AICTE and is permanently affiliated to JNTUK, Kakinada. It is also accredited by NBA and NAAC 'A++' with 3.51 CGPA.",
+            courses_offered: "1. Computer Science & Engineering. " + '<br>' +
+                " 2. Electronics & Communication Engineering. " + '<br>' +
+                " 3. Electrical & Electronics Engineering. " + '<br>' +
+                " 4. Mechanical Engineering. " + '<br>' +
+                "5. Information Technology. " + '<br>' +
+                "6. Civil Engineering. " + '<br>' +
+                "7. Basic Sciences " + '<br>' +
+                "8. Business Administration",
+            fee_structure:  "General college fee for B.Tech is 95,000. If you want to know about NRI fee details contact - " + contact_number + '<br>' +"For personal assistance you can visit " + address,
+            placement_offered: "Our students are being placed at major companies like TCS, Capegemini, Amazon, Amdocs, SenecaGlobal, Infosys etc..with 100% placements every year. ",
+            sports_and_NCC: "Our students are encouraged to particpate in different tournments for Cricket, volleyball, BasketBall," +
+                "Throwball,Badminton etc..We have special sports club to maintain all these.",
+            internships_and_projects: "Every year our students are doing Interships at different Multi-National Companies and few are being recruited directly after the internships.",
+            research: "We have a separate research department to sponsor the prestigious projects like R&D,DRDO etc. We have an Innovation centre to enhance students skills and to implement new ideas",
+            miscellaneous: "Apart from academic subjects,our college provides various additional courses like Pega,Game Development,Android App Development etc.. for students career development",
+            Extracurricular_activities: "We have Different clubs to support students interests like Music, Dance, Photography, Astronomy, Coding etc..",
+            Notification: "Right now we don't have any new notifications",
+
+            display_about_college: function () {
+                $('.chat-body').append('<p class="chat-reply">About Our College </p><br>');
+                $('.chat-body').append('<p class="chat-send">' + Menu_data.about_college + '</a></p><br>');
+            },
+            display_courses_offered: function () {
+                $('.chat-body').append('<p class="chat-reply">About Courses Offered</p><br>');
+                $('.chat-body').append('<p class="chat-send">' + Menu_data.courses_offered + '</p><br>');
+            },
+            display_fee_structure: function () {
+                $('.chat-body').append('<p class="chat-reply">About Fee Structure</p><br>');
+                $('.chat-body').append('<p class="chat-send">' + Menu_data.fee_structure + '</p><br>');
+            },
+            display_placements_offered: function () {
+                $('.chat-body').append('<p class="chat-reply">About Placements Offered</p><br>');
+                $('.chat-body').append('<p class="chat-send">' + Menu_data.placement_offered + '</p><br>');
+            },
+            display_sports_NCC: function () {
+                $('.chat-body').append('<p class="chat-reply">Sports and NCC</p><br>');
+                $('.chat-body').append('<p class="chat-send">' + Menu_data.sports_and_NCC + '</p><br>');
+            },
+            display_internships_and_projects: function () {
+                $('.chat-body').append('<p class="chat-reply">About Internships&projects</p><br>');
+                $('.chat-body').append('<p class="chat-send">' + Menu_data.internships_and_projects + '</p><br>');
+            },
+            disaplay_miscellaneous: function () {
+                $('.chat-body').append('<p class="chat-reply">About Miscellaneous Fee</p><br>');
+                $('.chat-body').append('<p class="chat-send">' + Menu_data.miscellaneous + '</p><br>');
+            },
+            display_Extracurricular_activities: function () {
+                $('.chat-body').append('<p class="chat-reply">About Extracurricular Activities</p><br>');
+                $('.chat-body').append('<p class="chat-send">' + Menu_data.Extracurricular_activities + '</p><br>');
+            },
+            display_Notification: function () {
+                $('.chat-body').append('<p class="chat-reply">About Notification</p><br>');
+                $('.chat-body').append('<p class="chat-send">' + Menu_data.Notification + '</p><br>');
+            },
+            display_research: function () {
+                $('.chat-body').append('<p class="chat-reply">About Research</p><br>');
+                $('.chat-body').append('<p class="chat-send">' + Menu_data.research + '</p><br>');
+            }
+
+        };
+
+        /*
+        * it will execute when the enter key is press on your keybord
+        * when the enter key pressed it automatically calls the button onClick event  
+        */
+
+        $("#msg").keyup(function(event) {
+            if (event.keyCode === 13) {
+                $(".btn").click();
+            }
+        });
+        /*
+        * this function returns the block or array of buttons on bot window
+        */
+        function show_menu_buttons() {
+            return '<button type="button" class="about_college">About College</button>' +
+                '<button type="button" class="Courses_offered">Courses offered </button>' +
+                '<button type="button" class="placements">Placements</button>' +
+                '<button type="button" class="Fee">Fee Structure</button>' +
+                '<button type="button" class="sports">Sports & NCC</button>' +
+                '<button type="button" class="projects">Internships&projects</button>' +
+                '<button type="button" class="research">Research Work</button>' +
+                '<button type="button" class="mfee">Miscellaneous</button>' +
+                '<button type="button" class="EActivities">Extracurricular Activities</button>' +
+                '<button type="button" class="notification">Notifications</button>';
+        }
+        /*
+        * used to open the bot window
+        */
+        $('.openChatBtn').click(function () {
+            document.querySelector(".openChat").style.display = "block";
+        });
+        /*
+        * used to close the bot window
+        */
+        $('.close').click(function () {
+            document.querySelector(".openChat").style.display = "none";
+        });
+        var greetings = true;
+        $(document).ready(function () {
+            $('.btn').click(function () {
+                reply = read_message();
+                $('#msg').val("");
+                /*
+                *this fuction is used to implement for the first greeting to the user                
+                */
+                if (greetings) {
+                    name_of_the_user = reply;
+                    $('.chat-body').append('<p class="chat-reply">' + reply + '</p><br>');
+                    $('.chat-body').append('<p class="chat-send">' + greeting_message() + '</p><br>');
+                    $('.chat-body').append('<p class="chat-send">' + get_time_greet() + " " + reply + '</p><br>');
+                    $('.chat-body').append('<p class="chat-send"> What information do you want from me ? </p><br>');
+                    $('.chat-body').append('<p class="chat-send">' + show_menu_buttons() + '</p>');
+                }
+
+                /*
+                * the block of if statements exexute after the greeting variable is false
+                */
+                if(!greetings){
+                    if (ignore_case(reply, "About college")) {
+                        Menu_data.display_about_college();
+                        $('.chat-body').append('<p class="chat-send">' + "To see the main menu enter the keyword MENU"  + '</p>');
+                    } else if (ignore_case(reply, "Courses offered")) {
+                        Menu_data.display_courses_offered();
+                        $('.chat-body').append('<p class="chat-send">' + "To see the main menu enter the keyword MENU"  + '</p>');
+                    } else if (ignore_case(reply, "Placements")) {
+                        Menu_data.display_placements_offered();
+                        $('.chat-body').append('<p class="chat-send">' + "To see the main menu enter the keyword MENU"  + '</p>');
+                    } else if (ignore_case(reply, "Fee structure")) {
+                        Menu_data.display_fee_structure();
+                        $('.chat-body').append('<p class="chat-send">' + "To see the main menu enter the keyword MENU" + '</p>');
+                    } else if (ignore_case(reply, "Sports and NCC")) {
+                        Menu_data.display_sports_NCC();
+                        $('.chat-body').append('<p class="chat-send">' + "To see the main menu enter the keyword MENU"  + '</p>');
+                    } else if (ignore_case(reply, "Internships and projects")) {
+                        Menu_data.display_internships_and_projects();
+                        $('.chat-body').append('<p class="chat-send">' + "To see the main menu enter the keyword MENU"  + '</p>');
+                    } else if (ignore_case(reply, "Research Work")) {
+                        Menu_data.display_research();
+                        $('.chat-body').append('<p class="chat-send">' + "To see the main menu enter the keyword MENU"  + '</p>');
+                    } else if (ignore_case(reply, "Miscellaneous")) {
+                        Menu_data.disaplay_miscellaneous();
+                        $('.chat-body').append('<p class="chat-send">' + "To see the main menu enter the keyword MENU"  + '</p>');
+                    } else if (ignore_case(reply, "Extracurricular Activities")) {
+                        Menu_data.display_Extracurricular_activities();
+                        $('.chat-body').append('<p class="chat-send">' + "To see the main menu enter the keyword MENU"  + '</p>');
+                    } else if (ignore_case(reply, "Notification")) {
+                        Menu_data.display_Notification();
+                        $('.chat-body').append('<p class="chat-send">' + "To see the main menu enter the keyword MENU"  + '</p>');
+                    }
+                    else if (ignore_case(reply, 'Menu')) {
+                        $('.chat-body').append('<p class="chat-reply">' + reply + '</p>');
+                        $('.chat-body').append('<p class="chat-send">' + show_menu_buttons() + '</p>');
+                    }
+                    else{
+                        $('.chat-body').append('<p class="chat-reply">' + reply + '</p>');
+                        $('.chat-body').append('<p class="chat-send">' + name_of_the_user + " Sorry for the inconvenience please enter a valid keyword or use button Menu to interact with this Bot"+'</p>');
+                        $('.chat-body').append('<p class="chat-send">' + show_menu_buttons() + '</p>');   
+                    }
+                }
+
+                /*
+                * button events corrsponding implementation
+                */
+                    $('.about_college').click(function () {
+                        Menu_data.display_about_college();
+                        $('.chat-body').append('<p class="chat-send">' + "To see the main menu enter the keyword MENU" + '</p>');
+                    });
+                    $('.Courses_offered').click(function () {
+                        Menu_data.display_courses_offered();
+                        $('.chat-body').append('<p class="chat-send">' + "To see the main menu enter the keyword MENU" + '</p>');
+                    });
+                    $('.placements').click(function () {
+                        Menu_data.display_placements_offered();
+                        $('.chat-body').append('<p class="chat-send">' + "To see the main menu enter the keyword MENU" + '</p>');
+                    });
+                    $('.Fee').click(function () {
+                        Menu_data.display_fee_structure();
+                        $('.chat-body').append('<p class="chat-send">' + "To see the main menu enter the keyword MENU" + '</p>');
+                    });
+                    $('.sports').click(function () {
+                        Menu_data.display_sports_NCC();
+                        $('.chat-body').append('<p class="chat-send">' + "To see the main menu enter the keyword MENU" + '</p>');
+                    });
+                    $('.projects').click(function () {
+                        Menu_data.display_internships_and_projects();
+                        $('.chat-body').append('<p class="chat-send">' + "To see the main menu enter the keyword MENU" + '</p>');
+                    });
+                    $('.research').click(function () {
+                        Menu_data.display_research();
+                        $('.chat-body').append('<p class="chat-send">' + "To see the main menu enter the keyword MENU" + '</p>');
+                    });
+                    $('.mfee').click(function () {
+                        Menu_data.disaplay_miscellaneous();
+                        $('.chat-body').append('<p class="chat-send">' + "To see the main menu enter the keyword MENU" + '</p>');
+                    });
+                    $('.EActivities').click(function () {
+                        Menu_data.display_Extracurricular_activities();
+                        $('.chat-body').append('<p class="chat-send">' + "To see the main menu enter the keyword MENU" + '</p>');
+                    });
+                    $('.notification').click(function () {
+                        Menu_data.display_Notification();
+                        $('.chat-body').append('<p class="chat-send">' + "To see the main menu enter the keyword MENU" + '</p>');
+                    });
+                greetings = false;
+            });
+
+        });
+
+        /* 
+        *this function returns true/false by ignoring the LowerCase & UpperCase of the string
+        */
+
+        function ignore_case(str, c_str) {
+            return str.toUpperCase() == c_str.toUpperCase() || str.toLowerCase() == c_str.toLowerCase();
+        }
+
+        /* 
+        *this function returns the greeting message randomly.
+        */
+
+        function greeting_message() {
+            greeting_messages = ["I am here to help you with college Information", "A very warm welcome to our college I will help you to give information about this college"]
+            index = Math.floor(Math.random() * 2);
+            return greeting_messages[index];
+        }
+
+        /* 
+        *find the current time to greet the  user like good moring,good afternoon like....
+        *this function returns the wishes message.
+        */
+
+        function get_time_greet() {
+            var d = new Date();
+            var hour = d.getHours();
+            var msg;
+            if (hour < 12)
+                msg = "Good Morning";
+            if (hour > 12 && hour <= 17)
+                msg = "Good Afternoon";
+            else if (hour > 17 && hour <= 21)
+                msg = "Good Evening";
+            else
+                msg = "hey it's late Night";
+            return msg;
+        }
+        function read_message() {
+            return document.getElementById('msg').value;
+        }
+    </script>
+</body>
+</html>
